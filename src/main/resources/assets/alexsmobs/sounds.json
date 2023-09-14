@@ -1712,21 +1712,6 @@
     ],
     "subtitle": "alexsmobs.sound.subtitle.sugar_glider_idle"
   },
-  "transmute_item": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "alexsmobs:transmute_item_0"
-      },
-      {
-        "name": "alexsmobs:transmute_item_1"
-      },
-      {
-        "name": "alexsmobs:transmute_item_2"
-      }
-    ],
-    "subtitle": "alexsmobs.sound.subtitle.transmute_item"
-  },
   "skunk_hurt": {
     "category": "neutral",
     "sounds": [

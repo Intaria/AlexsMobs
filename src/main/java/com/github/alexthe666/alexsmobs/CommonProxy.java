@@ -81,14 +81,6 @@ public class CommonProxy {
         return capsidRecipeManager;
     }
 
-    public void setDisplayTransmuteResult(int slot, ItemStack stack) {
-
-    }
-
-    public ItemStack getDisplayTransmuteResult(int slot) {
-        return ItemStack.EMPTY;
-    }
-
     public int getSingingBlueJayId() {
         return -1;
     }

@@ -253,8 +253,6 @@ public class AMSoundRegistry {
 
     public static final RegistryObject<SoundEvent> SUGAR_GLIDER_HURT = createSoundEvent("sugar_glider_hurt");
 
-    public static final RegistryObject<SoundEvent> TRANSMUTE_ITEM = createSoundEvent("transmute_item");
-
     public static final RegistryObject<SoundEvent> SKUNK_HURT = createSoundEvent("skunk_hurt");
 
     public static final RegistryObject<SoundEvent> SKUNK_IDLE = createSoundEvent("skunk_idle");

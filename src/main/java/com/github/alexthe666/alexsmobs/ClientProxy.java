@@ -56,7 +56,6 @@ public class ClientProxy extends CommonProxy {
     private int pupfishChunkX = 0;
     private int pupfishChunkZ = 0;
     private int singingBlueJayId = -1;
-    private ItemStack[] transmuteStacks = new ItemStack[3];
 
     @OnlyIn(Dist.CLIENT)
     public static Callable<BlockEntityWithoutLevelRenderer> getTEISR() {
@@ -278,15 +277,6 @@ public class ClientProxy extends CommonProxy {
     public void setPupfishChunkForItem(int chunkX, int chunkZ) {
         this.pupfishChunkX = chunkX;
         this.pupfishChunkZ = chunkZ;
-    }
-
-    public void setDisplayTransmuteResult(int slot, ItemStack stack){
-        transmuteStacks[Mth.clamp(slot, 0, 2)] = stack;
-    }
-
-    public ItemStack getDisplayTransmuteResult(int slot){
-        ItemStack stack = transmuteStacks[Mth.clamp(slot, 0, 2)];
-        return stack == null ? ItemStack.EMPTY : stack;
     }
 
     public int getSingingBlueJayId() {
