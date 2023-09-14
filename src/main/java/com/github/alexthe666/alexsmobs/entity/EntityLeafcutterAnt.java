@@ -129,7 +129,8 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     }
 
     public boolean canCollideWith(Entity entity) {
-        return !(entity instanceof EntityAnteater) && super.canCollideWith(entity);
+        return super.canCollideWith(entity);
+        //return !(entity instanceof EntityAnteater) && super.canCollideWith(entity);
     }
 
     public static AttributeSupplier.Builder bakeAttributes() {
@@ -190,9 +191,12 @@ public class EntityLeafcutterAnt extends Animal implements NeutralMob, IAnimated
     }
 
     public void push(Entity entity) {
+        super.push(entity);
+        /*
         if(!(entity instanceof EntityAnteater)){
             super.push(entity);
         }
+        */
     }
 
     private void pacifyAllNearby(){

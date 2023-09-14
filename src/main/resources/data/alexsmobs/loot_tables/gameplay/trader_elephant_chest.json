@@ -24,29 +24,6 @@
       ]
     },
     {
-      "name": "trader_elephant_book",
-      "rolls": {
-        "min": 0,
-        "max": 1
-      },
-      "entries": [
-        {
-          "type": "item",
-          "name": "alexsmobs:animal_dictionary",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
-            }
-          ],
-          "weight": 1
-        }
-      ]
-    },
-    {
       "name": "trader_elephant_chest",
       "rolls": {
         "min": 2,
@@ -75,32 +52,8 @@
         },
         {
           "type": "item",
-          "name": "alexsmobs:cockroach_wing_fragment",
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ],
-          "weight": 5
-        },
-        {
-          "type": "item",
           "name": "alexsmobs:shark_tooth",
           "weight": 5
-        },
-        {
-          "type": "item",
-          "name": "alexsmobs:mosquito_larva",
-          "weight": 11
-        },
-        {
-          "type": "item",
-          "name": "alexsmobs:centipede_leg",
-          "weight": 3
         },
         {
           "type": "item",
@@ -111,11 +64,6 @@
           "type": "item",
           "name": "alexsmobs:emu_feather",
           "weight": 2
-        },
-        {
-          "type": "item",
-          "name": "alexsmobs:tarantula_hawk_wing_fragment",
-          "weight": 5
         },
         {
           "type": "item",

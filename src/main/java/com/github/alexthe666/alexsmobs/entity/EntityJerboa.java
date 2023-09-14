@@ -98,7 +98,6 @@ public class EntityJerboa extends Animal {
         });
         this.goalSelector.addGoal(4, new AvoidEntityGoal(this, Cat.class, 9, 1.3D, 1.0D));
         this.goalSelector.addGoal(5, new AvoidEntityGoal(this, Ocelot.class, 9, 1.3D, 1.0D));
-        this.goalSelector.addGoal(6, new AvoidEntityGoal(this, EntityRattlesnake.class, 9, 1.3D, 1.0D));
         this.goalSelector.addGoal(7, new PanicGoal(this, 1.1D));
         this.goalSelector.addGoal(8, new AnimalAIWanderRanged(this, 20, 1.0D, 10, 7));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 10.0F));

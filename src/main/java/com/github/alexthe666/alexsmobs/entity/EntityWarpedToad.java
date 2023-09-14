@@ -214,7 +214,7 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
     }
 
     public boolean isFood(ItemStack stack) {
-        return stack.getItem() == AMItemRegistry.MOSQUITO_LARVA.get() && isTame();
+        return stack.getItem() == AMItemRegistry.LEAFCUTTER_ANT_PUPA.get() && isTame();
     }
 
 
@@ -222,7 +222,7 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
         ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
         InteractionResult type = super.mobInteract(player, hand);
-        if (!isTame() && item == AMItemRegistry.MOSQUITO_LARVA.get()) {
+        if (!isTame() && item == AMItemRegistry.LEAFCUTTER_ANT_PUPA.get()) {
             this.usePlayerItem(player, hand, itemstack);
             this.gameEvent(GameEvent.EAT);
             this.playSound(SoundEvents.STRIDER_EAT, this.getSoundVolume(), this.getVoicePitch());
@@ -409,9 +409,6 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
                 this.yBodyRot = this.getYRot();
                 this.yHeadRot = this.getYRot();
             } else {
-                if (entityIn instanceof EntityCrimsonMosquito) {
-                    ((EntityCrimsonMosquito) entityIn).setShrink(true);
-                }
                 this.setXRot(0);
                 float radius = attackProgress * 0.2F * 1.2F * (getTongueLength() - getTongueLength() * 0.4F);
                 float angle = (0.01745329251F * this.yBodyRot);
@@ -422,14 +419,11 @@ public class EntityWarpedToad extends TamableAnimal implements ITargetsDroppedIt
                 this.getTarget().setDeltaMovement(minus);
                 if (attackProgress == 0.5F) {
                     float damage = (float) this.getAttribute(Attributes.ATTACK_DAMAGE).getValue();
-                    if (entityIn instanceof EntityCrimsonMosquito) {
-                        damage = Float.MAX_VALUE;
-                    }
                     entityIn.hurt(DamageSource.mobAttack(this), damage);
                 }
             }
 
-            if (attackProgress == 5 && (entityIn.getBbHeight() < 0.89D || entityIn instanceof EntityCrimsonMosquito) && !entityIn.hasPassenger(this)) {
+            if (attackProgress == 5 && (entityIn.getBbHeight() < 0.89D) && !entityIn.hasPassenger(this)) {
             }
         }
         if (!level.isClientSide && isTongueOut() && attackProgress == 5F) {

@@ -180,13 +180,9 @@ public class EntityBison extends Animal implements IAnimatedEntity, Shearable, n
             snowTimer = 200 + random.nextInt(400);
             if (this.isSnowy()) {
                 if (!permSnow) {
-                    if (!this.level.isClientSide || this.getRemainingFireTicks() > 0 || this.isInWaterOrBubble() || !EntityGrizzlyBear.isSnowingAt(level, this.blockPosition().above())) {
+                    if (!this.level.isClientSide || this.getRemainingFireTicks() > 0 || this.isInWaterOrBubble()) {
                         this.setSnowy(false);
                     }
-                }
-            } else {
-                if (!this.level.isClientSide && EntityGrizzlyBear.isSnowingAt(level, this.blockPosition())) {
-                    this.setSnowy(true);
                 }
             }
         }

@@ -4,7 +4,6 @@ import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.config.AMConfig;
 import com.github.alexthe666.alexsmobs.entity.ai.FlightMoveController;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
-import com.github.alexthe666.alexsmobs.message.MessageMosquitoMountPlayer;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMTagRegistry;
 import net.minecraft.core.BlockPos;
@@ -88,7 +87,6 @@ public class EntityPotoo extends Animal implements IFalconry {
         this.goalSelector.addGoal(4, new AIPerch());
         this.goalSelector.addGoal(5, new AIMelee());
         this.goalSelector.addGoal(6, new AIFlyIdle());
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, EntityFly.class, 100, true, true, null));
     }
 
     private void switchNavigator(boolean onLand) {
@@ -446,9 +444,6 @@ public class EntityPotoo extends Animal implements IFalconry {
             boardingCooldown = 30;
             this.ejectPassengers();
             this.startRiding(player, true);
-            if (!level.isClientSide) {
-                AlexsMobs.sendMSGToAll(new MessageMosquitoMountPlayer(this.getId(), player.getId()));
-            }
             return InteractionResult.SUCCESS;
         } else {
             return type;

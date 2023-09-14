@@ -2,7 +2,6 @@ package com.github.alexthe666.alexsmobs.misc;
 
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
-import com.github.alexthe666.alexsmobs.enchantment.AMEnchantmentRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
@@ -43,6 +42,7 @@ public class AMItemGroup extends CreativeModeTab {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+        /*
         try {
             for (Field f : AMEnchantmentRegistry.class.getDeclaredFields()) {
                 Object obj = f.get(null);
@@ -56,5 +56,6 @@ public class AMItemGroup extends CreativeModeTab {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+        */
     }
 }

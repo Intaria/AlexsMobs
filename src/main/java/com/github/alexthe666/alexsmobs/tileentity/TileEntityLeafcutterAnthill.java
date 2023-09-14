@@ -102,6 +102,7 @@ public class TileEntityLeafcutterAnthill extends BlockEntity {
 
     }
 
+    /*
     public void angerAntsBecauseAnteater(@Nullable LivingEntity p_226963_1_, BlockState p_226963_2_, BeehiveBlockEntity.BeeReleaseStatus p_226963_3_) {
         List<Entity> list = this.tryReleaseAntAnteater(p_226963_2_, p_226963_3_);
         if (p_226963_1_ != null) {
@@ -117,6 +118,7 @@ public class TileEntityLeafcutterAnthill extends BlockEntity {
         }
 
     }
+    */
 
     private List<Entity> tryReleaseAnt(BlockState p_226965_1_, BeehiveBlockEntity.BeeReleaseStatus p_226965_2_) {
         List<Entity> list = Lists.newArrayList();

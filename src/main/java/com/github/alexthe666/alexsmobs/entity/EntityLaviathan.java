@@ -79,9 +79,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     private static final EntityDataAccessor<Integer> ATTACK_TICK = SynchedEntityData.defineId(EntityLaviathan.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_BODY_GEAR = SynchedEntityData.defineId(EntityLaviathan.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HAS_HEAD_GEAR = SynchedEntityData.defineId(EntityLaviathan.class, EntityDataSerializers.BOOLEAN);
-    private static final Predicate<EntityCrimsonMosquito> HEALTHY_MOSQUITOES = (mob) -> {
-        return mob.isAlive() && mob.getHealth() > 0 && !mob.isSick();
-    };
+
     public static final ResourceLocation OBSIDIAN_LOOT = new ResourceLocation("alexsmobs", "entities/laviathan_obsidian");
     public final EntityLaviathanPart headPart;
     public final EntityLaviathanPart neckPart1;
@@ -182,7 +180,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
     }
 
     public boolean isFood(ItemStack stack) {
-        return stack.is(AMItemRegistry.MOSQUITO_LARVA.get());
+        return stack.is(AMItemRegistry.LEAFCUTTER_ANT_PUPA.get());
     }
 
     public boolean isPushable() {
@@ -203,6 +201,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
             this.heal(10);
             return InteractionResult.SUCCESS;
         }
+        /*
         if (item == AMItemRegistry.STRADDLE_HELMET.get() && !this.hasHeadGear() && !this.isBaby()) {
             if (!player.isCreative()) {
                 itemstack.shrink(1);
@@ -210,6 +209,8 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
             this.setHeadGear(true);
             return InteractionResult.SUCCESS;
         }
+        */
+        /*
         if (item == AMItemRegistry.STRADDLE_SADDLE.get() && !this.hasBodyGear() && !this.isBaby()) {
             if (!player.isCreative()) {
                 itemstack.shrink(1);
@@ -217,6 +218,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
             this.setBodyGear(true);
             return InteractionResult.SUCCESS;
         }
+        */
         InteractionResult type = super.mobInteract(player, hand);
         InteractionResult interactionresult = itemstack.interactLivingEntity(player, this, hand);
         if (interactionresult != InteractionResult.SUCCESS && type != InteractionResult.SUCCESS && !isFood(itemstack) && this.hasBodyGear()) {
@@ -355,6 +357,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
 
     protected void dropEquipment() {
         super.dropEquipment();
+        /*
         if (this.hasBodyGear()) {
             if (!this.level.isClientSide) {
                 this.spawnAtLocation(AMItemRegistry.STRADDLE_SADDLE.get());
@@ -365,6 +368,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
                 this.spawnAtLocation(AMItemRegistry.STRADDLE_HELMET.get());
             }
         }
+        */
         this.setBodyGear(false);
         this.setHeadGear(false);
     }
@@ -407,7 +411,7 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
                 return 0;
             }
         });
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.of(Items.MAGMA_CREAM, AMItemRegistry.MOSQUITO_LARVA.get()), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.of(Items.MAGMA_CREAM, AMItemRegistry.LEAFCUTTER_ANT_PUPA.get()), false));
         this.goalSelector.addGoal(4, new AnimalAIFindWaterLava(this, 1.0D));
         this.goalSelector.addGoal(5, new LaviathanAIRandomSwimming(this, 1.0D, 22) {
             @Override
@@ -648,21 +652,11 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
         if (this.isChilling()) {
             boolean keepChillin = false;
             boolean startBiting = false;
-            for (EntityCrimsonMosquito entity : this.level.getEntitiesOfClass(EntityCrimsonMosquito.class, this.getBoundingBox().inflate(30.0D), HEALTHY_MOSQUITOES)) {
-                entity.setLuringLaviathan(this.getId());
-                keepChillin = true;
-            }
+
             if (keepChillin) {
                 this.setChillTime(Math.max(20, this.getChillTime()));
             }
-            for (EntityCrimsonMosquito entity : this.level.getEntitiesOfClass(EntityCrimsonMosquito.class, this.headPart.getBoundingBox().inflate(1.0D), HEALTHY_MOSQUITOES)) {
-                startBiting = true;
-                if (this.biteProgress == 5.0F) {
-                    entity.hurt(DamageSource.mobAttack(this), 1000);
-                    entity.setShrink(true);
-                    this.setChillTime(0);
-                }
-            }
+
             if (startBiting) {
                 if (this.entityData.get(ATTACK_TICK) <= 0 && this.biteProgress == 0) {
                     this.entityData.set(ATTACK_TICK, 7);
@@ -1017,9 +1011,11 @@ public class EntityLaviathan extends Animal implements ISemiAquatic, IHerdPanic 
         scaleParts();
     }
 
+    /*
     public Vec3 getLureMosquitoPos() {
         return new Vec3(this.headPart.getX(), this.headPart.getY(0.4F), this.headPart.getZ());
     }
+    */
 
     @Override
     public void onPanic() {

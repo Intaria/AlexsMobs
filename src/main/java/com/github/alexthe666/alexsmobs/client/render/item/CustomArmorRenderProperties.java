@@ -26,7 +26,6 @@ public class CustomArmorRenderProperties implements IClientItemExtensions {
     public static ModelRockyChestplate ROCKY_CHESTPLATE_MODEL;
     public static ModelFlyingFishBoots FLYING_FISH_BOOTS_MODEL;
     public static ModelNoveltyHat NOVELTY_HAT_MODEL;
-    public static ModelUnsettlingKimono UNSETTLING_KIMONO_MODEL;
 
     public static void initializeModels() {
         init = true;
@@ -42,16 +41,12 @@ public class CustomArmorRenderProperties implements IClientItemExtensions {
         ROCKY_CHESTPLATE_MODEL = new ModelRockyChestplate(Minecraft.getInstance().getEntityModels().bakeLayer(AMModelLayers.ROCKY_CHESTPLATE));
         FLYING_FISH_BOOTS_MODEL = new ModelFlyingFishBoots(Minecraft.getInstance().getEntityModels().bakeLayer(AMModelLayers.FLYING_FISH_BOOTS));
         NOVELTY_HAT_MODEL = new ModelNoveltyHat(Minecraft.getInstance().getEntityModels().bakeLayer(AMModelLayers.NOVELTY_HAT));
-        UNSETTLING_KIMONO_MODEL = new ModelUnsettlingKimono(Minecraft.getInstance().getEntityModels().bakeLayer(AMModelLayers.UNSETTLING_KIMONO));
     }
 
     @Override
     public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
         if(!init){
             initializeModels();
-        }
-        if(itemStack.getItem() == AMItemRegistry.TARANTULA_HAWK_ELYTRA.get()){
-            return ELYTRA_MODEL.withAnimations(entityLiving);
         }
         if(itemStack.getItem() == AMItemRegistry.ROADDRUNNER_BOOTS.get()){
             return ROADRUNNER_BOOTS_MODEL;
@@ -82,9 +77,6 @@ public class CustomArmorRenderProperties implements IClientItemExtensions {
         }
         if(itemStack.getItem() == AMItemRegistry.NOVELTY_HAT.get()){
             return NOVELTY_HAT_MODEL;
-        }
-        if(itemStack.getItem() == AMItemRegistry.UNSETTLING_KIMONO.get()){
-            return UNSETTLING_KIMONO_MODEL;
         }
         return _default;
     }

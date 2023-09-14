@@ -3,9 +3,7 @@
   "values": [
     "minecraft:redstone",
     "minecraft:redstone_block",
-    "alexsmobs:mosquito_larva",
     "alexsmobs:maggot",
-    "alexsmobs:mosquito_larva",
     "#minecraft:fishes",
     "alexsmobs:lobster_tail",
     "alexsmobs:cooked_lobster_tail"

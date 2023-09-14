@@ -54,14 +54,6 @@ public class ItemModFishBucket extends MobBucketItem {
                 tooltip.add((Component.translatable(TerrapinTypes.values()[Mth.clamp(i, 0, TerrapinTypes.values().length - 1)].getTranslationName())).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
             }
         }
-        if (fishType == AMEntityRegistry.COMB_JELLY.get()) {
-            CompoundTag compoundnbt = stack.getTag();
-            if (compoundnbt != null && compoundnbt.contains("BucketVariantTag", 3)) {
-                int i = compoundnbt.getInt("BucketVariantTag");
-                String s = "entity.alexsmobs.comb_jelly.variant_" + i;
-                tooltip.add((Component.translatable(s)).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-            }
-        }
     }
 
     @Override

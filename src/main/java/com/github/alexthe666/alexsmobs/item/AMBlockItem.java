@@ -44,6 +44,6 @@ public class AMBlockItem extends BlockItem {
 
 
     public boolean canBeHurtBy(DamageSource damage) {
-        return super.canBeHurtBy(damage) && (this != AMBlockRegistry.TRANSMUTATION_TABLE.get().asItem() || !damage.isExplosion());
+        return super.canBeHurtBy(damage) && (!damage.isExplosion());
     }
 }

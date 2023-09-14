@@ -56,6 +56,7 @@ public class EntityCockroachEgg extends ThrowableItemProjectile {
         super.onHit(result);
         if (!this.level.isClientSide) {
             this.level.broadcastEntityEvent(this, (byte)3);
+            /*
             int i = random.nextInt(3);
             for (int j = 0; j < i; ++j) {
                 final EntityCockroach croc = AMEntityRegistry.COCKROACH.get().create(this.level);
@@ -65,6 +66,7 @@ public class EntityCockroachEgg extends ThrowableItemProjectile {
                 croc.restrictTo(this.blockPosition(), 20);
                 this.level.addFreshEntity(croc);
             }
+            */
             this.level.broadcastEntityEvent(this, (byte)3);
             this.remove(RemovalReason.DISCARDED);
         }

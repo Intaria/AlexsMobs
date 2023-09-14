@@ -86,8 +86,7 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
     public float prevSwellProgress = 0;
     public float swellProgress = 0;
     private int beamCounter = 0;
-    private int mosquitoAttackCooldown = 0;
-    private boolean hasExploded;
+       private boolean hasExploded;
     public int timeUntilNextEgg = this.random.nextInt(24000) + 24000;
 
     protected EntityMungus(EntityType<? extends Animal> type, Level worldIn) {
@@ -183,15 +182,6 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
             }
         } else if (isAlive() && swellProgress > 0F) {
             swellProgress -= 1F;
-        }
-        if (entityData.get(EXPLOSION_DISABLED)) {
-            if (mosquitoAttackCooldown < 0) {
-                mosquitoAttackCooldown++;
-            }
-            if (mosquitoAttackCooldown > 200) {
-                mosquitoAttackCooldown = 0;
-                entityData.set(EXPLOSION_DISABLED, false);
-            }
         }
     }
 
@@ -666,10 +656,6 @@ public class EntityMungus extends Animal implements ITargetsDroppedItems, Sheara
 
     public boolean isReverting() {
         return entityData.get(REVERTING);
-    }
-
-    public boolean isWarpedMoscoReady() {
-        return this.getMushroomState() == Blocks.WARPED_FUNGUS.defaultBlockState() && this.getMushroomCount() >= 5;
     }
 
 

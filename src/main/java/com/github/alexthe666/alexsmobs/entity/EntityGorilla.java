@@ -107,9 +107,11 @@ public class EntityGorilla extends TamableAnimal implements IAnimatedEntity, ITa
         return (blockstate.is(BlockTags.LEAVES) || blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(BlockTags.LOGS) || blockstate.is(Blocks.AIR)) && worldIn.getRawBrightness(p_223317_3_, 0) > 8;
     }
 
+    /*
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
         return AMEntityRegistry.rollSpawn(AMConfig.gorillaSpawnRolls, this.getRandom(), spawnReasonIn);
     }
+    */
 
     public boolean isFood(ItemStack stack) {
         Item item = stack.getItem();

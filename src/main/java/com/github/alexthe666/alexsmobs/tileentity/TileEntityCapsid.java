@@ -3,7 +3,6 @@ package com.github.alexthe666.alexsmobs.tileentity;
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.block.BlockCapsid;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
-import com.github.alexthe666.alexsmobs.entity.EntityEnderiophage;
 import com.github.alexthe666.alexsmobs.message.MessageUpdateCapsid;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import com.github.alexthe666.alexsmobs.misc.CapsidRecipe;
@@ -100,27 +99,11 @@ public class TileEntityCapsid extends BaseContainerBlockEntity implements Worldl
             } else {
                 floatUpProgress = 0F;
             }
-            if(this.getItem(0).getItem() == Items.ENDER_EYE && level.getBlockState(this.getBlockPos().below()).getBlock() == Blocks.END_ROD && level.getBlockState(this.getBlockPos().below()).getValue(EndRodBlock.FACING).getAxis() == Direction.Axis.Y){
-                vibratingThisTick = true;
-                if(transformTime > 20){
-                    this.setItem(0, ItemStack.EMPTY);
-                    this.level.destroyBlock(this.getBlockPos(), false);
-                    this.level.destroyBlock(this.getBlockPos().below(), false);
-                    EntityEnderiophage phage = AMEntityRegistry.ENDERIOPHAGE.get().create(level);
-                    phage.setPos(this.getBlockPos().getX() + 0.5F, this.getBlockPos().getY() - 1.0F, this.getBlockPos().getZ() + 0.5F);
-                    phage.setVariant(0);
-                    if(!level.isClientSide){
-                        level.addFreshEntity(phage);
-                    }
-                }
-            }else if(!this.getItem(0).isEmpty() && level.getBlockState(this.getBlockPos().above()).getBlock() != this.getBlockState().getBlock()){
+            if(!this.getItem(0).isEmpty() && level.getBlockState(this.getBlockPos().above()).getBlock() != this.getBlockState().getBlock()){
                 if(lastRecipe != null && lastRecipe.matches(this.getItem(0))){
                     floatUpProgress = 0.0F;
                     vibratingThisTick = true;
-                    if(transformTime == 1 && (AlexsMobs.isAprilFools() || new Random().nextInt(100) == 0)){
-                        fnaf = true;
-                        level.playSound(null, this.getBlockPos(), AMSoundRegistry.MOSQUITO_CAPSID_CONVERT.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                    }
+
                     if(transformTime > (fnaf ? Math.max(160, lastRecipe.getTime()) : lastRecipe.getTime())) {
                         ItemStack current = this.getItem(0).copy();
                         current.shrink(1);

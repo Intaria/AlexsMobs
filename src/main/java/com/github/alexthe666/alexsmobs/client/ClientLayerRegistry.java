@@ -1,7 +1,6 @@
 package com.github.alexthe666.alexsmobs.client;
 
 import com.github.alexthe666.alexsmobs.AlexsMobs;
-import com.github.alexthe666.alexsmobs.client.render.layer.LayerRainbow;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.world.entity.EntityType;
@@ -30,9 +29,11 @@ public class ClientLayerRegistry {
         entityTypes.forEach((entityType -> {
             addLayerIfApplicable(entityType, event);
         }));
+        /*
         for (String skinType : event.getSkins()){
             event.getSkin(skinType).addLayer(new LayerRainbow(event.getSkin(skinType)));
         }
+        */
     }
 
     private static void addLayerIfApplicable(EntityType<? extends LivingEntity> entityType, EntityRenderersEvent.AddLayers event) {
@@ -43,9 +44,11 @@ public class ClientLayerRegistry {
             }catch (Exception e){
                 AlexsMobs.LOGGER.warn("Could not apply rainbow color layer to " + ForgeRegistries.ENTITY_TYPES.getKey(entityType) + ", has custom renderer that is not LivingEntityRenderer.");
             }
+            /*
             if(renderer != null){
                 renderer.addLayer(new LayerRainbow(renderer));
             }
+            */
         }
     }
 }

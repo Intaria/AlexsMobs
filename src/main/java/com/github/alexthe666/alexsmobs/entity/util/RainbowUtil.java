@@ -1,7 +1,6 @@
 package com.github.alexthe666.alexsmobs.entity.util;
 
 import com.github.alexthe666.alexsmobs.config.AMConfig;
-import com.github.alexthe666.alexsmobs.item.ItemRainbowJelly;
 import com.github.alexthe666.alexsmobs.misc.AMSimplexNoise;
 import com.github.alexthe666.citadel.Citadel;
 import com.github.alexthe666.citadel.server.entity.CitadelEntityData;
@@ -38,10 +37,12 @@ public class RainbowUtil {
         return 0;
     }
 
+    /*
     public static int getRainbowTypeFromStack(ItemStack stack){
         String name = stack.getDisplayName().getString().toLowerCase(Locale.ROOT);
         return ItemRainbowJelly.RainbowType.getFromString(name).ordinal() + 1;
     }
+    */
 
     public static int calculateGlassColor(BlockPos pos) {
         float f = (float)AMConfig.rainbowGlassFidelity;

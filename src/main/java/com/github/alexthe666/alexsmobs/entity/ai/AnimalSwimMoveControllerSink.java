@@ -1,6 +1,5 @@
 package com.github.alexthe666.alexsmobs.entity.ai;
 
-import com.github.alexthe666.alexsmobs.entity.EntityMimicOctopus;
 import com.github.alexthe666.alexsmobs.entity.ISemiAquatic;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.PathfinderMob;
@@ -66,9 +65,6 @@ public class AnimalSwimMoveControllerSink extends MoveControl {
 
             }
         } else {
-            if(entity instanceof EntityMimicOctopus && !entity.isOnGround()){
-                this.entity.setDeltaMovement(entity.getDeltaMovement().add(0, -0.02, 0));
-            }
             this.entity.setSpeed(0.0F);
             this.entity.setXxa(0.0F);
             this.entity.setYya(0.0F);

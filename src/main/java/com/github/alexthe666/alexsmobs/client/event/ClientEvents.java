@@ -8,7 +8,6 @@ import com.github.alexthe666.alexsmobs.client.model.layered.AMModelLayers;
 import com.github.alexthe666.alexsmobs.client.render.AMItemstackRenderer;
 import com.github.alexthe666.alexsmobs.client.render.AMRenderTypes;
 import com.github.alexthe666.alexsmobs.client.render.LavaVisionFluidRenderer;
-import com.github.alexthe666.alexsmobs.client.render.RenderVineLasso;
 import com.github.alexthe666.alexsmobs.config.AMConfig;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.effect.EffectPowerDown;
@@ -17,9 +16,7 @@ import com.github.alexthe666.alexsmobs.entity.EntityBlueJay;
 import com.github.alexthe666.alexsmobs.entity.EntityElephant;
 import com.github.alexthe666.alexsmobs.entity.IFalconry;
 import com.github.alexthe666.alexsmobs.entity.util.RockyChestplateUtil;
-import com.github.alexthe666.alexsmobs.entity.util.VineLassoUtil;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
-import com.github.alexthe666.alexsmobs.item.ItemDimensionalCarver;
 import com.github.alexthe666.alexsmobs.message.MessageUpdateEagleControls;
 import com.github.alexthe666.alexsmobs.misc.AMTagRegistry;
 import com.github.alexthe666.citadel.client.event.EventGetFluidRenderType;
@@ -85,25 +82,6 @@ public class ClientEvents {
                 event.setColor(0X4B95FE);
                 event.setResult(Event.Result.ALLOW);
             }
-        }
-        if (event.getEntityIn() instanceof ItemEntity && ((ItemEntity) event.getEntityIn()).getItem().is(AMTagRegistry.VOID_WORM_DROPS)){
-            int fromColor = 0;
-            int toColor = 0X21E5FF;
-            float startR = (float) (fromColor >> 16 & 255) / 255.0F;
-            float startG = (float) (fromColor >> 8 & 255) / 255.0F;
-            float startB = (float) (fromColor & 255) / 255.0F;
-            float endR = (float) (toColor >> 16 & 255) / 255.0F;
-            float endG = (float) (toColor >> 8 & 255) / 255.0F;
-            float endB = (float) (toColor & 255) / 255.0F;
-            float f = (float) (Math.cos(0.4F * (event.getEntityIn().tickCount + Minecraft.getInstance().getFrameTime())) + 1.0F) * 0.5F;
-            float r = (endR - startR) * f + startR;
-            float g = (endG - startG) * f + startG;
-            float b = (endB - startB) * f + startB;
-            int j = ((((int) (r * 255)) & 0xFF) << 16) |
-                    ((((int) (g * 255)) & 0xFF) << 8) |
-                    ((((int) (b * 255)) & 0xFF) << 0);
-            event.setColor(j);
-            event.setResult(Event.Result.ALLOW);
         }
     }
 
@@ -198,12 +176,6 @@ public class ClientEvents {
             event.getEntity().yHeadRotO = -event.getEntity().yHeadRotO;
             event.getEntity().yHeadRot = -event.getEntity().yHeadRot;
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU.get())) {
-            event.getPoseStack().pushPose();
-            event.getPoseStack().mulPose(Vector3f.YP.rotationDegrees((float) (Math.cos((double) event.getEntity().tickCount * 7F) * Math.PI * (double) 1.2F)));
-            float vibrate = 0.05F;
-            event.getPoseStack().translate((event.getEntity().getRandom().nextFloat() - 0.5F) * vibrate, (event.getEntity().getRandom().nextFloat() - 0.5F) * vibrate, (event.getEntity().getRandom().nextFloat() - 0.5F) * vibrate);
-        }
     }
 
     @SubscribeEvent
@@ -212,52 +184,12 @@ public class ClientEvents {
         if (RockyChestplateUtil.isRockyRolling(event.getEntity())) {
             return;
         }
-        if (event.getEntity().hasEffect(AMEffectRegistry.ENDER_FLU.get())) {
-            event.getPoseStack().popPose();
-        }
         if (event.getEntity().hasEffect(AMEffectRegistry.CLINGING.get()) && event.getEntity().getEyeHeight() < event.getEntity().getBbHeight() * 0.45F || event.getEntity().hasEffect(AMEffectRegistry.DEBILITATING_STING.get()) && event.getEntity().getMobType() == MobType.ARTHROPOD && event.getEntity().getBbWidth() > event.getEntity().getBbHeight()) {
             event.getPoseStack().popPose();
             event.getEntity().yBodyRotO = -event.getEntity().yBodyRotO;
             event.getEntity().yBodyRot = -event.getEntity().yBodyRot;
             event.getEntity().yHeadRotO = -event.getEntity().yHeadRotO;
             event.getEntity().yHeadRot = -event.getEntity().yHeadRot;
-        }
-        if (VineLassoUtil.hasLassoData(event.getEntity()) && !(event.getEntity() instanceof Player)) {
-            Entity lassoedOwner = VineLassoUtil.getLassoedTo(event.getEntity());
-            if (lassoedOwner instanceof LivingEntity && lassoedOwner != event.getEntity()) {
-                double d0 = Mth.lerp(event.getPartialTick(), event.getEntity().xOld, event.getEntity().getX());
-                double d1 = Mth.lerp(event.getPartialTick(), event.getEntity().yOld, event.getEntity().getY());
-                double d2 = Mth.lerp(event.getPartialTick(), event.getEntity().zOld, event.getEntity().getZ());
-                event.getPoseStack().pushPose();
-                event.getPoseStack().translate(-d0, -d1, -d2);
-                RenderVineLasso.renderVine(event.getEntity(), event.getPartialTick(), event.getPoseStack(), event.getMultiBufferSource(), (LivingEntity) lassoedOwner, ((LivingEntity) lassoedOwner).getMainArm() == HumanoidArm.LEFT, 0.1F);
-                event.getPoseStack().popPose();
-            }
-        }
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void onPoseHand(EventPosePlayerHand event) {
-        LivingEntity player = (LivingEntity) event.getEntityIn();
-        float f = Minecraft.getInstance().getFrameTime();
-        boolean leftHand = false;
-        boolean usingLasso = player.isUsingItem() && player.getUseItem().is(AMItemRegistry.VINE_LASSO.get());
-        if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() == AMItemRegistry.VINE_LASSO.get()) {
-            leftHand = player.getMainArm() == HumanoidArm.LEFT;
-        } else if (player.getItemInHand(InteractionHand.OFF_HAND).getItem() == AMItemRegistry.VINE_LASSO.get()) {
-            leftHand = player.getMainArm() != HumanoidArm.LEFT;
-        }
-        if (leftHand && event.isLeftHand() && usingLasso) {
-            float swing = (float) Math.sin(player.tickCount + f) * 0.5F;
-            event.setResult(Event.Result.ALLOW);
-            event.getModel().leftArm.xRot = (float) Math.toRadians(-120F) + (float) Math.sin(player.tickCount + f) * 0.5F;
-            event.getModel().leftArm.yRot = (float) Math.toRadians(-20F) + (float) Math.cos(player.tickCount + f) * 0.5F;
-        }
-        if (!leftHand && !event.isLeftHand() && usingLasso) {
-            event.setResult(Event.Result.ALLOW);
-            event.getModel().rightArm.xRot = (float) Math.toRadians(-120F) + (float) Math.sin(player.tickCount + f) * 0.5F;
-            event.getModel().rightArm.yRot = (float) Math.toRadians(20F) - (float) Math.cos(player.tickCount + f) * 0.5F;
         }
     }
 
@@ -295,21 +227,6 @@ public class ClientEvents {
                     ClientProxy.currentUnrenderedEntities.add(entity.getUUID());
                 }
             }
-        }
-        if (Minecraft.getInstance().player.getUseItem().getItem() instanceof ItemDimensionalCarver && event.getItemStack().getItem() instanceof ItemDimensionalCarver) {
-            PoseStack matrixStackIn = event.getPoseStack();
-            matrixStackIn.pushPose();
-            ItemInHandRenderer renderer = Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer();
-            InteractionHand hand = MoreObjects.firstNonNull(Minecraft.getInstance().player.swingingArm, InteractionHand.MAIN_HAND);
-            float f = Minecraft.getInstance().player.getAttackAnim(event.getPartialTick());
-            float f1 = Mth.lerp(event.getPartialTick(), Minecraft.getInstance().player.xRotO, Minecraft.getInstance().player.getXRot());
-            float f5 = -0.4F * Mth.sin(Mth.sqrt(f) * (float) Math.PI);
-            float f6 = 0.2F * Mth.sin(Mth.sqrt(f) * ((float) Math.PI * 2F));
-            float f10 = -0.2F * Mth.sin(f * (float) Math.PI);
-            HumanoidArm handside = hand == InteractionHand.MAIN_HAND ? Minecraft.getInstance().player.getMainArm() : Minecraft.getInstance().player.getMainArm().getOpposite();
-            boolean flag3 = handside == HumanoidArm.RIGHT;
-            int l = flag3 ? 1 : -1;
-            matrixStackIn.translate((float) l * f5, f6, f10);
         }
     }
 

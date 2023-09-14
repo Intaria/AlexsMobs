@@ -5,8 +5,6 @@ import com.github.alexthe666.alexsmobs.config.AMConfig;
 import com.github.alexthe666.alexsmobs.entity.ai.*;
 import com.github.alexthe666.alexsmobs.entity.util.Maths;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
-import com.github.alexthe666.alexsmobs.message.MessageMosquitoDismount;
-import com.github.alexthe666.alexsmobs.message.MessageMosquitoMountPlayer;
 import com.github.alexthe666.alexsmobs.misc.AMAdvancementTriggerRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMTagRegistry;
@@ -390,9 +388,7 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
                 this.setLaunched(false);
                 this.ejectPassengers();
                 this.startRiding(player, true);
-                if (!level.isClientSide) {
-                    AlexsMobs.sendMSGToAll(new MessageMosquitoMountPlayer(this.getId(), player.getId()));
-                }
+
                 return InteractionResult.SUCCESS;
             } else {
                 InteractionResult interactionresult = itemstack.interactLivingEntity(player, this, hand);
@@ -873,9 +869,7 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
         if (this.hasCap()) {
             this.setFlying(true);
             this.getMoveControl().setWantedPosition(this.getX(), this.getY(), this.getZ(), 0.1F);
-            if (this.level.isClientSide) {
-                AlexsMobs.sendMSGToServer(new MessageMosquitoDismount(this.getId(), player.getId()));
-            }
+
             AlexsMobs.PROXY.setRenderViewEntity(this);
         } else {
             this.getNavigation().stop();
@@ -1211,9 +1205,7 @@ public class EntityBaldEagle extends TamableAnimal implements IFollower, IFalcon
                     this.eagle.setLaunched(false);
                     if (this.eagle.getRidingFalcons(owner) <= 0) {
                         this.eagle.startRiding(owner);
-                        if (!eagle.level.isClientSide) {
-                            AlexsMobs.sendMSGToAll(new MessageMosquitoMountPlayer(eagle.getId(), owner.getId()));
-                        }
+
                     } else {
                         this.eagle.setCommand(2);
                         this.eagle.setOrderedToSit(true);

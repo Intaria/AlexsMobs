@@ -1,6 +1,5 @@
 package com.github.alexthe666.alexsmobs.entity.ai;
 
-import com.github.alexthe666.alexsmobs.entity.EntityMimicOctopus;
 import com.github.alexthe666.alexsmobs.entity.IFollower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
@@ -149,9 +148,6 @@ public class TameableAIFollowOwnerWater extends Goal {
     }
 
     public boolean avoidsLand() {
-        if(this.tameable instanceof EntityMimicOctopus mimicOctopus){
-            return mimicOctopus.getMoistness() < 2000;
-        }
         return false;
     }
 

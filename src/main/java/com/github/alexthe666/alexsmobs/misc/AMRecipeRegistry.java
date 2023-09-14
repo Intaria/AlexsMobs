@@ -11,7 +11,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class AMRecipeRegistry {
     public static final DeferredRegister<RecipeSerializer<?>> DEF_REG = DeferredRegister.create(Registry.RECIPE_SERIALIZER_REGISTRY, AlexsMobs.MODID);
-    public static final RegistryObject<RecipeSerializer<?>> MIMICREAM_RECIPE = DEF_REG.register("mimicream_repair", () -> new SimpleRecipeSerializer<>(RecipeMimicreamRepair::new));
     public static final RegistryObject<RecipeSerializer<?>> BISON_UPGRADE = DEF_REG.register("bison_upgrade", () -> new SimpleRecipeSerializer<>(RecipeBisonUpgrade::new));
 
     public static void init(){

@@ -28,7 +28,6 @@ public class ItemModArmor extends ArmorItem {
     private Multimap<Attribute, AttributeModifier> attributeMapCroc;
     private Multimap<Attribute, AttributeModifier> attributeMapMoose;
     private Multimap<Attribute, AttributeModifier> attributeMapFlyingFish;
-    private Multimap<Attribute, AttributeModifier> attributeMapKimono;
 
     public ItemModArmor(AMArmorMaterial armorMaterial, EquipmentSlot slot) {
         super(armorMaterial, slot, new Item.Properties().tab(AMItemGroup.INSTANCE));
@@ -42,9 +41,6 @@ public class ItemModArmor extends ArmorItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (this.material == AMItemRegistry.CENTIPEDE_ARMOR_MATERIAL) {
-            tooltip.add(Component.translatable("item.alexsmobs.centipede_leggings.desc").withStyle(ChatFormatting.GRAY));
-        }
         if (this.material == AMItemRegistry.EMU_ARMOR_MATERIAL) {
             tooltip.add(Component.translatable("item.alexsmobs.emu_leggings.desc").withStyle(ChatFormatting.GRAY));
         }
@@ -69,9 +65,6 @@ public class ItemModArmor extends ArmorItem {
         }
         if (this.material == AMItemRegistry.NOVELTY_HAT_MATERIAL) {
             tooltip.add(Component.translatable("item.alexsmobs.novelty_hat.desc").withStyle(ChatFormatting.GRAY));
-        }
-        if (this.material == AMItemRegistry.KIMONO_MATERIAL) {
-            tooltip.add(Component.translatable("item.alexsmobs.unsettling_kimono.desc").withStyle(ChatFormatting.GRAY));
         }
     }
 
@@ -108,15 +101,6 @@ public class ItemModArmor extends ArmorItem {
         attributeMapMoose = builder.build();
     }
 
-    private void buildKimonoAttributes(AMArmorMaterial materialIn) {
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        UUID uuid = ARMOR_MODIFIERS[slot.getIndex()];
-        builder.put(Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", materialIn.getDefenseForSlot(slot), AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(uuid, "Armor toughness", materialIn.getToughness(), AttributeModifier.Operation.ADDITION));
-        builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(uuid, "Reach distance", 2, AttributeModifier.Operation.ADDITION));
-        attributeMapKimono = builder.build();
-    }
-
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
         if (getMaterial() == AMItemRegistry.CROCODILE_ARMOR_MATERIAL && equipmentSlot == this.slot) {
             if (attributeMapCroc == null) {
@@ -136,12 +120,6 @@ public class ItemModArmor extends ArmorItem {
             }
             return attributeMapFlyingFish;
         }
-        if (getMaterial() == AMItemRegistry.KIMONO_MATERIAL && equipmentSlot == this.slot) {
-            if (attributeMapKimono == null) {
-                buildKimonoAttributes(AMItemRegistry.KIMONO_MATERIAL);
-            }
-            return attributeMapKimono;
-        }
         return super.getDefaultAttributeModifiers(equipmentSlot);
     }
 
@@ -151,8 +129,6 @@ public class ItemModArmor extends ArmorItem {
             return "alexsmobs:textures/armor/crocodile_chestplate.png";
         } else if (this.material == AMItemRegistry.ROADRUNNER_ARMOR_MATERIAL) {
             return "alexsmobs:textures/armor/roadrunner_boots.png";
-        } else if (this.material == AMItemRegistry.CENTIPEDE_ARMOR_MATERIAL) {
-            return "alexsmobs:textures/armor/centipede_leggings.png";
         } else if (this.material == AMItemRegistry.MOOSE_ARMOR_MATERIAL) {
             return "alexsmobs:textures/armor/moose_headgear.png";
         } else if (this.material == AMItemRegistry.RACCOON_ARMOR_MATERIAL) {
@@ -173,8 +149,6 @@ public class ItemModArmor extends ArmorItem {
             return "alexsmobs:textures/armor/flying_fish_boots.png";
         } else if (this.material == AMItemRegistry.NOVELTY_HAT_MATERIAL) {
             return "alexsmobs:textures/armor/novelty_hat.png";
-        } else if (this.material == AMItemRegistry.KIMONO_MATERIAL) {
-            return "alexsmobs:textures/armor/unsettling_kimono.png";
         }
         return super.getArmorTexture(stack, entity, slot, type);
     }

@@ -64,9 +64,11 @@ public class EntityBoneSerpent extends Monster {
         switchNavigator(false);
     }
 
+    /*
     public boolean checkSpawnRules(LevelAccessor worldIn, MobSpawnType spawnReasonIn) {
         return AMEntityRegistry.rollSpawn(AMConfig.boneSeprentSpawnRolls, this.getRandom(), spawnReasonIn) && super.checkSpawnRules(worldIn, spawnReasonIn);
     }
+    */
 
     public int getMaxSpawnClusterSize() {
         return 1;

@@ -15,11 +15,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
-          "name": "alexsmobs:mimicream"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 12,
           "name": "minecraft:raw_copper"
         },
