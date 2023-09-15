@@ -28,4 +28,19 @@ public class RenderPlatypus extends MobRenderer<EntityPlatypus, ModelPlatypus> {
     public ResourceLocation getTextureLocation(EntityPlatypus entity) {
         return entity.isPerry() ? TEXTURE_PERRY : TEXTURE;
     }
+
+    class FedoraLayer extends RenderLayer<EntityPlatypus, ModelPlatypus> {
+        private final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/platypus_fedora.png");
+
+        public FedoraLayer(RenderPlatypus renderGrizzlyBear) {
+            super(renderGrizzlyBear);
+        }
+
+        public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, EntityPlatypus entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+            if(entitylivingbaseIn.hasFedora()){
+                VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.entityCutout(TEXTURE));
+                this.getParentModel().renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+            }
+        }
+    }
 }

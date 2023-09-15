@@ -11,6 +11,7 @@ import java.util.List;
 public class AMMobIcons {
 
     private static List<Pair<EntityType, Float>> MOB_ICONS = Util.make(Lists.newArrayList(), (list) -> {
+        list.add(new Pair<>(AMEntityRegistry.GRIZZLY_BEAR.get(), 0.6F));
         list.add(new Pair<>(AMEntityRegistry.ROADRUNNER.get(), 0.8F));
         list.add(new Pair<>(AMEntityRegistry.GAZELLE.get(), 0.6F));
         list.add(new Pair<>(AMEntityRegistry.CROCODILE.get(), 0.3F));

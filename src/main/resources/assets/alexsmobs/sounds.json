@@ -1,4 +1,49 @@
 {
+  "grizzly_bear_idle": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "alexsmobs:grizzly_bear_idle_0"
+      },
+      {
+        "name": "alexsmobs:grizzly_bear_idle_1"
+      },
+      {
+        "name": "alexsmobs:grizzly_bear_idle_2"
+      },
+      {
+        "name": "alexsmobs:grizzly_bear_idle_3"
+      }
+    ],
+    "subtitle": "alexsmobs.sound.subtitle.grizzly_bear_idle"
+  },
+  "grizzly_bear_hurt": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "alexsmobs:grizzly_bear_hurt_0"
+      },
+      {
+        "name": "alexsmobs:grizzly_bear_hurt_1"
+      },
+      {
+        "name": "alexsmobs:grizzly_bear_hurt_2"
+      }
+    ],
+    "subtitle": "alexsmobs.sound.subtitle.grizzly_bear_hurt"
+  },
+  "grizzly_bear_die": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "alexsmobs:grizzly_bear_die_0"
+      },
+      {
+        "name": "alexsmobs:grizzly_bear_die_1"
+      }
+    ],
+    "subtitle": "alexsmobs.sound.subtitle.grizzly_bear_die"
+  },
   "roadrunner_idle": {
     "category": "neutral",
     "sounds": [

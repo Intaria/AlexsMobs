@@ -7,6 +7,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import java.util.List;
 
 public class AMConfig {
+    public static int grizzlyBearSpawnWeight = 8;
+    public static int grizzlyBearSpawnRolls = 0;
     public static int roadrunnerSpawnWeight = 9;
     public static int roadrunnerSpawnRolls = 1;
     public static int boneSerpentSpawnWeight = 0;
@@ -183,6 +185,8 @@ public class AMConfig {
             lavaOpacity = ConfigHolder.COMMON.lavaOpacity.get();
             shadersCompat = ConfigHolder.COMMON.shadersCompat.get();
             neutralBoneSerpents = ConfigHolder.COMMON.neutralBoneSerpents.get();
+            grizzlyBearSpawnWeight = ConfigHolder.COMMON.grizzlyBearSpawnWeight.get();
+            grizzlyBearSpawnRolls = ConfigHolder.COMMON.grizzlyBearSpawnRolls.get();
             roadrunnerSpawnWeight = ConfigHolder.COMMON.roadrunnerSpawnWeight.get();
             roadrunnerSpawnRolls = ConfigHolder.COMMON.roadrunnerSpawnRolls.get();
             boneSerpentSpawnWeight = ConfigHolder.COMMON.boneSerpentSpawnWeight.get();

@@ -12,6 +12,9 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 
 public class AMTagRegistry {
     public static final TagKey<Item> INSECT_ITEMS = registerItemTag("insect_items");
+    public static final TagKey<Block> GRIZZLY_BEEHIVE = registerBlockTag("grizzly_beehive");
+    public static final TagKey<Item> GRIZZLY_FOODSTUFFS = registerItemTag("grizzly_foodstuffs");
+    public static final TagKey<Item> GRIZZLY_HONEY = registerItemTag("grizzly_honey");
     public static final TagKey<Block> DROPS_BANANAS = registerBlockTag("drops_bananas");
     public static final TagKey<Block> DROPS_ACACIA_BLOSSOMS = registerBlockTag("drops_acacia_blossoms");
     public static final TagKey<Block> ORCA_BREAKABLES = registerBlockTag("orca_breakables");

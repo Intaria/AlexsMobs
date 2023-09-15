@@ -12,6 +12,12 @@ public class AMSoundRegistry {
     public static final DeferredRegister<SoundEvent> DEF_REG = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, AlexsMobs.MODID);
 
     public static final RegistryObject<SoundEvent> BEAR_DUST = createSoundEvent("bear_dust");
+    
+    public static final RegistryObject<SoundEvent> GRIZZLY_BEAR_IDLE = createSoundEvent("grizzly_bear_idle");
+    
+    public static final RegistryObject<SoundEvent> GRIZZLY_BEAR_HURT = createSoundEvent("grizzly_bear_hurt");
+    
+    public static final RegistryObject<SoundEvent> GRIZZLY_BEAR_DIE = createSoundEvent("grizzly_bear_die");
 
     public static final RegistryObject<SoundEvent> ROADRUNNER_IDLE = createSoundEvent("roadrunner_idle");
 
@@ -248,7 +254,7 @@ public class AMSoundRegistry {
     public static final RegistryObject<SoundEvent> RHINOCEROS_IDLE = createSoundEvent("rhinoceros_idle");
 
     public static final RegistryObject<SoundEvent> RHINOCEROS_HURT = createSoundEvent("rhinoceros_hurt");
-
+    
     public static final RegistryObject<SoundEvent> SUGAR_GLIDER_IDLE = createSoundEvent("sugar_glider_idle");
 
     public static final RegistryObject<SoundEvent> SUGAR_GLIDER_HURT = createSoundEvent("sugar_glider_hurt");

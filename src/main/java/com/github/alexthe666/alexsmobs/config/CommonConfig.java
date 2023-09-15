@@ -20,6 +20,8 @@ public class CommonConfig {
     public final ForgeConfigSpec.BooleanValue dolphinsAttackFlyingFish;
     public final ForgeConfigSpec.BooleanValue bananasDropFromLeaves;
     public final ForgeConfigSpec.IntValue bananaChance;
+    public final ForgeConfigSpec.IntValue grizzlyBearSpawnWeight;
+    public final ForgeConfigSpec.IntValue grizzlyBearSpawnRolls;
     public final ForgeConfigSpec.IntValue roadrunnerSpawnWeight;
     public final ForgeConfigSpec.IntValue roadrunnerSpawnRolls;
     public final ForgeConfigSpec.IntValue gazelleSpawnWeight;
@@ -205,6 +207,8 @@ public class CommonConfig {
         bunfungusTransformation = buildBoolean(builder, "bunfungusTransformation", "all", true, "Whether Rabbits can transform into Bunfungus if fed Mungal spores.");
         addLootToChests = buildBoolean(builder, "addLootToChests", "all", true, "True if some Alex's Mobs items should spawn in loot chests.");
         builder.push("spawning");
+        grizzlyBearSpawnWeight = buildInt(builder, "grizzlyBearSpawnWeight", "spawns", AMConfig.grizzlyBearSpawnWeight, 0, 1000, "Spawn Weight, added to a pool of other mobs for each biome. Higher number = higher chance of spawning. 0 = disable spawn");
+        grizzlyBearSpawnRolls = buildInt(builder, "grizzlyBearSpawnRolls", "spawns", AMConfig.grizzlyBearSpawnRolls, 0, Integer.MAX_VALUE, "Random roll chance to enable mob spawning. Higher number = lower chance of spawning");
         roadrunnerSpawnWeight = buildInt(builder, "roadrunnerSpawnWeight", "spawns", AMConfig.roadrunnerSpawnWeight, 0, 1000, "Spawn Weight, added to a pool of other mobs for each biome. Higher number = higher chance of spawning. 0 = disable spawn");
         roadrunnerSpawnRolls = buildInt(builder, "roadrunnerSpawnRolls", "spawns", AMConfig.roadrunnerSpawnRolls, 0, Integer.MAX_VALUE, "Random roll chance to enable mob spawning. Higher number = lower chance of spawning");
         boneSerpentSpawnWeight = buildInt(builder, "boneSerpentSpawnWeight", "spawns", AMConfig.boneSerpentSpawnWeight, 0, 1000, "Spawn Weight, added to a pool of other mobs for each biome. Higher number = higher chance of spawning. 0 = disable spawn");

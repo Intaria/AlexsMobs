@@ -41,6 +41,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import com.github.alexthe666.alexsmobs.client.sound.SoundBearMusicBox;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -49,7 +50,7 @@ import java.util.concurrent.Callable;
 @Mod.EventBusSubscriber(modid = AlexsMobs.MODID, value = Dist.CLIENT)
 public class ClientProxy extends CommonProxy {
 
-    //public static final Map<Integer, SoundBearMusicBox> BEAR_MUSIC_BOX_SOUND_MAP = new HashMap<>();
+    public static final Map<Integer, SoundBearMusicBox> BEAR_MUSIC_BOX_SOUND_MAP = new HashMap<>();
     public static List<UUID> currentUnrenderedEntities = new ArrayList<UUID>();
     public CameraType prevPOV = CameraType.FIRST_PERSON;
     public boolean initializedRainbowBuffers = false;
@@ -71,6 +72,7 @@ public class ClientProxy extends CommonProxy {
     public void clientInit() {
         initRainbowBuffers();
         ItemRenderer itemRendererIn = Minecraft.getInstance().getItemRenderer();
+        EntityRenderers.register(AMEntityRegistry.GRIZZLY_BEAR.get(), RenderGrizzlyBear::new);
         EntityRenderers.register(AMEntityRegistry.ROADRUNNER.get(), RenderRoadrunner::new);
         EntityRenderers.register(AMEntityRegistry.GAZELLE.get(), RenderGazelle::new);
         EntityRenderers.register(AMEntityRegistry.CROCODILE.get(), RenderCrocodile::new);
@@ -199,6 +201,18 @@ public class ClientProxy extends CommonProxy {
 
     @OnlyIn(Dist.CLIENT)
     public void onEntityStatus(Entity entity, byte updateKind) {
+        if (entity instanceof EntityGrizzlyBear && entity.isAlive() && updateKind == 67) {
+            SoundBearMusicBox sound;
+            if (BEAR_MUSIC_BOX_SOUND_MAP.get(entity.getId()) == null) {
+                sound = new SoundBearMusicBox((EntityGrizzlyBear) entity);
+                BEAR_MUSIC_BOX_SOUND_MAP.put(entity.getId(), sound);
+            } else {
+                sound = BEAR_MUSIC_BOX_SOUND_MAP.get(entity.getId());
+            }
+            if (!Minecraft.getInstance().getSoundManager().isActive(sound) && sound.canPlaySound() && sound.isOnlyMusicBox()) {
+                Minecraft.getInstance().getSoundManager().play(sound);
+            }
+        }
         if (entity instanceof EntityBlueJay && entity.isAlive() && updateKind == 67) {
             singingBlueJayId = entity.getId();
         }
