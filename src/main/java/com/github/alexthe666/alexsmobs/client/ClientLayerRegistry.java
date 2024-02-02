@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @OnlyIn(Dist.CLIENT)
 public class ClientLayerRegistry {
 
+    /*
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
@@ -29,13 +30,15 @@ public class ClientLayerRegistry {
         entityTypes.forEach((entityType -> {
             addLayerIfApplicable(entityType, event);
         }));
-        /*
-        for (String skinType : event.getSkins()){
-            event.getSkin(skinType).addLayer(new LayerRainbow(event.getSkin(skinType)));
-        }
-        */
+        
+        //for (String skinType : event.getSkins()){
+        //    event.getSkin(skinType).addLayer(new LayerRainbow(event.getSkin(skinType)));
+        //}
+        
     }
+    */
 
+    /*
     private static void addLayerIfApplicable(EntityType<? extends LivingEntity> entityType, EntityRenderersEvent.AddLayers event) {
         LivingEntityRenderer renderer = null;
         if(entityType != EntityType.ENDER_DRAGON){
@@ -44,11 +47,10 @@ public class ClientLayerRegistry {
             }catch (Exception e){
                 //AlexsMobs.LOGGER.warn("Could not apply rainbow color layer to " + ForgeRegistries.ENTITY_TYPES.getKey(entityType) + ", has custom renderer that is not LivingEntityRenderer.");
             }
-            /*
             if(renderer != null){
                 renderer.addLayer(new LayerRainbow(renderer));
             }
-            */
         }
     }
+    */
 }

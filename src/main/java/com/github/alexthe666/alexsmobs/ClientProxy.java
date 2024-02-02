@@ -64,7 +64,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void init() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientLayerRegistry::onAddLayers);
+        //FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientLayerRegistry::onAddLayers);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::setupParticles);
         //FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientProxy::onBakingCompleted);
     }
