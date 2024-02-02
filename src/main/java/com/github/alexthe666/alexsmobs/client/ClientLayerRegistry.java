@@ -42,7 +42,7 @@ public class ClientLayerRegistry {
             try{
                 renderer = event.getRenderer(entityType);
             }catch (Exception e){
-                AlexsMobs.LOGGER.warn("Could not apply rainbow color layer to " + ForgeRegistries.ENTITY_TYPES.getKey(entityType) + ", has custom renderer that is not LivingEntityRenderer.");
+                //AlexsMobs.LOGGER.warn("Could not apply rainbow color layer to " + ForgeRegistries.ENTITY_TYPES.getKey(entityType) + ", has custom renderer that is not LivingEntityRenderer.");
             }
             /*
             if(renderer != null){
