@@ -1,0 +1,23 @@
+{
+    "display": {
+      "icon": {
+        "item": "alexsmobs:banana"
+      },
+      "title": {
+        "translate": "advancements.alexsmobs.root.title"
+    },
+    "description": {
+        "translate": "advancements.alexsmobs.root.desc"
+    },
+
+    "background": "alexsmobs:textures/advancement_background.png",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden" : false
+    },
+    "criteria": {
+      "Install": {
+        "trigger": "minecraft:tick"
+      }
+    }
+  }

@@ -10,7 +10,7 @@
             "translate": "advancements.alexsmobs.strange_fish_finder.desc"
         }
     },
-    "parent": "alexsmobs:alexsmobs/fish_bones",
+    "parent": "alexsmobs:alexsmobs/root",
     "criteria": {
         "sopa_de_macaco": {
             "trigger": "minecraft:inventory_changed",

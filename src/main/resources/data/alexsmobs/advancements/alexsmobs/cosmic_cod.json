@@ -10,7 +10,7 @@
             "translate": "advancements.alexsmobs.cosmic_cod.desc"
         }
     },
-    "parent": "alexsmobs:alexsmobs/capsid",
+    "parent": "alexsmobs:alexsmobs/root",
     "criteria": {
         "capsid": {
             "trigger": "minecraft:inventory_changed",
