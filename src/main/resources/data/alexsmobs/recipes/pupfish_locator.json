@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SBS",
+    "SCS",
     "BAB",
-    "SBS"
+    "SCS"
   ],
   "key": {
     "A": {
@@ -13,7 +13,10 @@
       "item": "minecraft:slime_ball"
     },
     "B": {
-      "item": "alexsmobs:fish_bones"
+      "item": "alexsmobs:serrated_shark_tooth"
+    },
+    "C": {
+      "item": "alexsmobs:cachalot_whale_tooth"
     }
   },
   "result": {
